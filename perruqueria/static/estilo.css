@@ -1,0 +1,416 @@
+
+/* Paleta de colores/fuentes */
+:root{
+    --fuenteLetras: 'Josefin Sans', sans-serif;
+    --primario: #9C27B0;
+    --primarioOscuro: #89119D;
+    --secundario: #FFCE00;
+    --blanco: #FFF;
+    --negro: #000;
+    --morado: #9400d3;
+    --rojo: #cd5c5c;
+    --verde: #008000;
+    --verdeclaro: #adff2f;
+    --azul: #0000ff;
+    --azulclaro: #00bfff;
+}
+
+/* Globales */
+body {
+    background-color: var(--primario);
+    color: var(--blanco);
+    font-size: 1.6rem;
+    line-height: 1.5;
+}
+
+h2{
+    font-size: 3.2rem;
+    text-align: center;
+}
+
+h3{
+    font-size: 2.4rem;
+    text-align: center;
+}
+
+p{
+    text-align: center;
+}
+
+a{
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+/* Header */
+header h1{
+font-family: var(--fuenteLetras);
+text-align: center;
+font-size: 8rem;
+color: #FFF;
+margin-top: 2rem;
+
+}
+header{
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    align-items: center;
+    margin-left: 11rem;
+    margin-right: 11rem;
+    padding: auto;
+}
+
+header img{
+    padding: 1rem;
+    height: 200px;
+    width: 260px;
+}
+
+img{
+    height: 600px;
+}
+
+
+
+/* Nav-bar */
+.navegador{
+    background-color: var(--primarioOscuro);
+    padding: 1rem 0;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 1rem;
+}
+
+.navegador .enlace{
+    font-family: var(--fuentePrincipal);
+    color: var(--blanco);
+    font-size: 1.4rem;
+}
+
+.navegador .enlace--activo{
+    font-family: var(--fuentePrincipal);
+    color: var(--secundario);
+    font-size: 1.4rem;
+}
+
+.navegador .enlace:hover{
+    color: var(--secundario);
+}
+/* Media queries */
+@media (max-width: 768px) {
+    header {
+      grid-template-columns: 1fr;
+      justify-items: center;
+      margin-left: 2rem;
+      margin-right: 2rem;
+    }
+  
+    header img {
+      height: 150px;
+      width: 195px;
+    }
+  
+    header h1 {
+      font-size: 5rem;
+    }
+    /* Cambios en el menú de navegación */
+  .navegador {
+    flex-direction: column; /* Cambio a dirección de columna */
+    align-items: center; /* Centrar los elementos */
+  }
+
+  .navegador .enlace {
+    margin-bottom: 1rem; /* Agregar margen inferior a los enlaces */
+  }
+}
+  
+/* Subtitulo */
+.subtitulo{
+    padding: 2rem;
+}
+
+/* Servicios */
+.servicios {
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+@media (min-width: 768px) {
+    .servicios {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 992px) {
+    .servicios {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.servicio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.servicio .iconos {
+    height: 10rem;
+    width: 10rem;
+    background-color: var(--secundario);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.servicio p {
+    line-height: 2;
+}
+
+/* Contacto */
+.ubicacion {
+    display: flex;
+    align-items: center;
+}
+
+.rrss{
+    padding: 2rem 2rem 0 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Cambio en la definición de las columnas */
+    gap: 1rem; /* Cambio en la propiedad column-gap */
+}
+
+.social {
+    font-size: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center; /* Añadida propiedad para centrar el contenido */
+}
+
+.social h3{
+    color: var(--secundario);
+    font-weight: normal;
+}
+
+.social p{
+    line-height: 2;
+}
+
+.social .fb .iconos{
+    height: 15rem;
+    width: 15rem;
+    background-image: linear-gradient(to bottom, var(--azul) 0%, var(--azulclaro) 100%);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.social .insta .iconos{
+    height: 15rem;
+    width: 15rem;
+    background-image: linear-gradient(to top, var(--rojo) 0%, var(--morado) 100%);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.social .wspp .iconos {
+    height: 15rem;
+    width: 15rem;
+    background-image: linear-gradient(to bottom, var(--verde) 0%, var(--verdeclaro) 100%);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.social svg{
+    color: white;
+}
+
+/* Horario */
+.horario{
+    padding: 3rem;
+}
+
+.contenedor{
+    max-width: auto;
+    margin: 0 auto;
+    border-radius: 3rem;
+    background-color: var(--primarioOscuro);
+}
+
+/* Mapa (API) */
+
+.p-mapa{
+    padding: 0 1rem 1rem 1rem;
+}
+
+#mapa {
+    display: grid;
+    grid-template-columns: auto;
+    height: 300px;
+    width: 900px;
+    margin: 0 auto;
+    margin-bottom: 2rem;    
+}
+
+.info-window{
+    color: var(--negro);
+    border-radius: 4px;
+    font-size: 1rem;
+    padding: 8px;
+}
+
+/* Reservas */
+#reserva form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+#reserva form .form-group {
+    margin-bottom: 20px;
+}
+
+#reserva form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+#reserva form input {
+    padding: 5px;
+    width: 100%;
+    height: 25px;
+    border: none;
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, 0.2);
+    color: white;
+    font-size: 14px;
+}
+#reserva form select {
+    padding: 5px;
+    width: 100%;
+    height: 30px;
+    border: none;
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, 0.2);
+    color: white;
+    font-size: 14px;
+}
+#reserva form .error {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+#reserva form button {
+    width: 100%;
+}
+
+.modal-content {
+    text-align: center;
+}
+
+/*Nosotros*/
+.contenedor_card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap; /* Permitir envolver las cards si el espacio es insuficiente */
+    margin: 0 -10px; /* Agregar margen negativo para compensar el padding de las cards */
+}
+
+.card {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+    margin: 10px; /* Ajustar el margen para separar las cards */
+    flex: 1 0 calc(33.33% - 20px); /* Establecer un ancho flexible para adaptarse a diferentes tamaños de pantalla */
+    max-width: 300px; /* Establecer un ancho máximo para evitar que las cards se vuelvan demasiado grandes en pantallas grandes */
+    box-sizing: border-box; /* Incluir el padding en el ancho total de la card */
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+}
+
+.card h3 {
+    margin-top: 5px;
+}   
+
+/* Modal */
+
+.modal-body,
+.modal-title{
+    color: var(--negro);
+}
+
+.btn{
+    background-color: var(--blanco);
+    color: var(--negro);
+    font-size: 1.7rem;
+}
+
+/* Trabajo */
+.titulo-trabajo{
+    text-align: center;
+    font-size: 4rem;
+}
+
+.cuerpo-trabajo{
+    margin: 0 2rem;
+}
+/* Footer */
+footer{
+    text-align: center;
+    background-color: var(--primarioOscuro);
+    margin-top: 2rem;
+}
+
+/* Estilos para los servicios */
+.services {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .service {
+    display: inline-block;
+    margin: 20px;
+  }
+  
+  .service img {
+    width: 200px;
+    height: 200px;
+  }
+  
+  .service h2 {
+    margin-top: 10px;
+  }
+  
+  .add-to-cart {
+    margin-top: 10px;
+  }
+  
+  /* Estilos para el carrito de compras */
+  .cart-icon {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+  }
+  
+  .cart-icon img {
+    width: 40px;
+    height: 40px;
+  }
