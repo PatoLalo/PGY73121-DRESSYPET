@@ -9,7 +9,6 @@ let raza = document.getElementById('raza');
 
 
 nom_cliente.addEventListener("input", validarNombre);
-
 nom_mascota.addEventListener("input", validarNombreMascota);
 email.addEventListener("input", validarEmail);
 telefono.addEventListener("input", validarTelefono);
@@ -40,6 +39,7 @@ function validarNombreMascota() {
       errorNombreMascota.className = "error";
     }
   }
+
 function validarEmail(){
   let emailcli = email.value.trim();
   let errorEmail = document.getElementById("errorEmail");

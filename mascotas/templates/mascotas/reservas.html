@@ -33,8 +33,9 @@
     </nav>
     <section id="reserva">
         <h2>¡RESERVE SU HORA CON NOSOTROS!</h2>
-        <form id="formulario" class="contenedor" action="tipo_servicio">
-
+        <form id="formulario" class="contenedor" action="registrar_reserva" method="POST">
+            {% csrf_token %}
+            
             <div class="form-group">
                 <label for="nombre_cliente">Nombre cliente:</label>
                 <input type="text" id="nombre_cliente" class="form-control transparent-input" name="nombre_cliente">
@@ -45,16 +46,6 @@
                 <label for="nombre_mascota">Nombre mascota:</label>
                 <input type="text" id="nombre_mascota" class="form-control transparent-input" name="nombre_mascota">
                 <div id="errorNombreMascota" class="error"></div>
-            </div>
-
-            <div class="form-group">
-                <label for="servicio">Tipo de servicio:</label>
-                <select id="servicio" class="form-control" name="tipo_servicio">
-                    {% for servicio in servicios %}
-                        <option value="{{ servicio.id_servicio }}">{{ servicio.servicio }}</option>
-                    {% endfor %}
-                </select>
-                <div id="errorHora" class="error"></div>
             </div>
 
             <div class="form-group">
@@ -75,19 +66,21 @@
                 <div id="errorFecha" class="error"></div>
             </div>
 
-            <div class="form-group">
-                <label for="hora">Hora de reserva:</label>
-                <select id="hora" class="form-control" name="hora">
-                    <option value="">Seleccionar una hora</option>
-                </select>
-                <div id="errorHora" class="error"></div>
-            </div>
+            <label for="hora">Hora de reserva:</label>
+            <input type="time" id="hora" name="hora">
+            <div id="errorHora" style="color: red;" class="error"></div>
 
             <div class="form-group">
                 <label for="raza">Raza:</label>
                 <input type="text" id="raza" class="form-control transparent-input" name="raza">
                 <div id="errorRaza" class="error"></div>
             </div>
+
+            <button type="submit" onclick=" return enviarFormulario()">Enviar
+            </button>
+
+        </form>
+    </section>
 
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
@@ -106,13 +99,12 @@
                         Una vez enviado, la hora quedará automaticamente agendada y no podrá anularse. ¿Está seguro de enviar?
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick=" return enviarFormulario()">Seguro, enviar.</button>
+                        <button type="button"  class="btn btn-secondary" data-bs-dismiss="modal" onclick=" return enviarFormulario()">Seguro, enviar.</button>
                     </div>
                 </div>
                 </div>
             </div>
-        </form>
-    </section>
+      
     <footer>Todos los derechos reservados. Dressypet.</footer>
     <script src='{% static "funciones.js"%}'></script>
 </body>

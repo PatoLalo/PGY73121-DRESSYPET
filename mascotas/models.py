@@ -15,12 +15,11 @@ class Servicio(models.Model):
 class Reserva(models.Model):
     nombre_cliente   = models.CharField(primary_key=True, max_length=10)
     nombre_mascota   = models.CharField(max_length=20)
-    apellido_paterno = models.CharField(max_length=20) 
-    id_Servicio      = models.ForeignKey('Servicio',on_delete=models.CASCADE, db_column='idServicio')  
+    email            = models.EmailField(unique=True, max_length=100, blank=True, null=True) 
     telefono         = models.CharField(max_length=45)
-    email            = models.EmailField(unique=True, max_length=100, blank=True, null=True)
+    fecha_reserva    = models.DateField()
     hora_reserva     = models.TimeField()
-    fecha_reserva    = models.DateField() 
+    raza             = models.CharField(max_length=50) 
 
     def clean(self):
         if self.hora_reserva and self.hora_reserva.hour < 9 or self.hora_reserva.hour > 19:
