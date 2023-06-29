@@ -1,8 +1,14 @@
 from django.shortcuts import redirect, render
 
-from .models import Reserva, Servicio
+from mascotas.models import Reserva, Servicio
 
 # Create your views here.
+
+
+def index(request):
+    context={}
+    return render(request,'mascotas/index.html', context)
+
 def index(request):
     context={}
     return render(request, 'mascotas/index.html', context)
@@ -23,6 +29,10 @@ def trabajo(request):
 def contacto(request):
     context={}
     return render(request, 'mascotas/contacto.html', context)
+
+def carrito(request):
+    context={}
+    return render(request, 'mascotas/carrito.html', context)
 
 def registrar_reserva(request):
     if request.method == 'POST':
@@ -46,7 +56,22 @@ def registrar_reserva(request):
                                         raza=raza,)
         reserva.save()
         # Redirigir a una página de éxito o realizar cualquier otra acción que desees
-        return redirect('mascotas/contacto.html')
+        return render(request,'mascotas/carrito.html', {'reserva': reserva})
 
     # Si no es una solicitud POST, renderiza el formulario nuevamente o realiza cualquier otra acción que desees
     return render(request, 'mascotas/reservas.html')
+
+def busqueda(request):
+    if request.method == 'GET':
+        cliente = request.GET.get('cliente')  # Obtener el nombre del cliente desde la solicitud GET
+
+        # Realizar la búsqueda en la base de datos
+        if cliente:
+            reservas = None
+            reservas = Reserva.objects.filter(nombre_cliente__icontains=cliente)
+        else:
+            reservas = None
+        # Renderizar el resultado de la búsqueda en un template
+        return render(request, 'mascotas/carrito.html', {'reservas': reservas})
+
+    return render(request, 'mascotas/carrito.html')

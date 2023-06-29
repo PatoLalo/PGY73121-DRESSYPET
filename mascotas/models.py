@@ -27,4 +27,3 @@ class Reserva(models.Model):
 
         if self.fecha_reserva and self.fecha_reserva < datetime.date.today():
             raise ValidationError("La fecha de reserva no puede ser en el pasado.")
-
