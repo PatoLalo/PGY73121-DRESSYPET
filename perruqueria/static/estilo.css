@@ -114,14 +114,14 @@ img{
     header h1 {
       font-size: 5rem;
     }
-    /* Cambios en el menú de navegación */
+    /* menú de navegación */
   .navegador {
-    flex-direction: column; /* Cambio a dirección de columna */
-    align-items: center; /* Centrar los elementos */
+    flex-direction: column; 
+    align-items: center; 
   }
 
   .navegador .enlace {
-    margin-bottom: 1rem; /* Agregar margen inferior a los enlaces */
+    margin-bottom: 1rem; 
   }
 }
   
@@ -179,8 +179,8 @@ img{
 .rrss{
     padding: 2rem 2rem 0 2rem;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Cambio en la definición de las columnas */
-    gap: 1rem; /* Cambio en la propiedad column-gap */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem; 
 }
 
 .social {
@@ -188,7 +188,7 @@ img{
     display: flex;
     flex-direction: column;
     align-items: center;
-    text-align: center; /* Añadida propiedad para centrar el contenido */
+    text-align: center; 
 }
 
 .social h3{
@@ -327,18 +327,18 @@ img{
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap; /* Permitir envolver las cards si el espacio es insuficiente */
-    margin: 0 -10px; /* Agregar margen negativo para compensar el padding de las cards */
+    flex-wrap: wrap;
+    margin: 0 -10px;
 }
 
 .card {
     border: 1px solid #ccc;
     border-radius: 4px;
     padding: 10px;
-    margin: 10px; /* Ajustar el margen para separar las cards */
-    flex: 1 0 calc(33.33% - 20px); /* Establecer un ancho flexible para adaptarse a diferentes tamaños de pantalla */
-    max-width: 300px; /* Establecer un ancho máximo para evitar que las cards se vuelvan demasiado grandes en pantallas grandes */
-    box-sizing: border-box; /* Incluir el padding en el ancho total de la card */
+    margin: 10px; 
+    flex: 1 0 calc(33.33% - 20px); 
+    max-width: 300px; 
+    box-sizing: border-box; 
 }
 
 .card img {
@@ -414,7 +414,10 @@ footer{
     width: 40px;
     height: 40px;
   }
-
+/* redondeo imagen servicios*/
+.imgRedondeo {
+    border-radius: 50%;
+}
 
   
   

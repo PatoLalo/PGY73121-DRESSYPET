@@ -7,6 +7,10 @@ from django.forms import ValidationError
 class Servicio(models.Model):
     id_servicio  = models.AutoField(db_column='idServicio', primary_key=True) 
     servicio     = models.CharField(max_length=50, blank=False, null=False)
+    precio       = models.IntegerField( null=True)
+
+    def formato_precio(self):
+        return "{:,}".format(self.precio).replace(",", ".")
 
     def __str__(self):
         return str(self.servicio)
@@ -20,6 +24,7 @@ class Reserva(models.Model):
     fecha_reserva    = models.DateField()
     hora_reserva     = models.TimeField()
     raza             = models.CharField(max_length=50) 
+    servicios        = models.ManyToManyField(Servicio)
 
     def clean(self):
         if self.hora_reserva and self.hora_reserva.hour < 9 or self.hora_reserva.hour > 19:

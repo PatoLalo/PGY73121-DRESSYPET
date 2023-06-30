@@ -23,8 +23,6 @@
         <a href="{% url 'index'%}">
             <h1>Dressy Pet</h1>
         </a>
-
-        
         
     </header>  
     <nav class="navegador">
@@ -88,41 +86,8 @@
         </div>
 
     </section>
-
-            {% comment %} <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                Enviar
-            </button> {% endcomment %}
-        
-            <!-- Modal -->
-            <div class="modal fade" id="log" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Reserva de hora.</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        Una vez enviado, la hora quedará automaticamente agendada y no podrá anularse. ¿Está seguro de enviar?
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button"  class="btn btn-secondary" data-bs-dismiss="modal" onclick=" return enviarFormulario()">Seguro, enviar.</button>
-                    </div>
-                </div>
-                </div>
-            </div> 
       
     <footer>Todos los derechos reservados. Dressypet.</footer>
     <script src='{% static "funciones.js"%}'></script>
-    <!-- Al final de la plantilla -->
-    <script>
-        // Esperar a que el documento esté listo
-        $("bt_modal").click(function() {
-            $("log").modal("show"):
-            
-            
-           
-        });
-    </script>
 </body>
 </html>

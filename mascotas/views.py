@@ -30,13 +30,19 @@ def contacto(request):
     context={}
     return render(request, 'mascotas/contacto.html', context)
 
+def servicios(request):
+    servicios = Servicio.objects.all()
+    context = {'servicios': servicios}
+    return render(request, 'mascotas/servicios.html', context)
+
 def carrito(request):
-    context={}
+    servicios = Servicio.objects.all()
+    context = {'servicios': servicios}
     return render(request, 'mascotas/carrito.html', context)
 
 def registrar_reserva(request):
     if request.method == 'POST':
-        # Obtener los datos del formulario
+        
         nombre_cliente = request.POST.get('nombre_cliente')
         nombre_mascota = request.POST.get('nombre_mascota')
         email = request.POST.get('email')
@@ -45,7 +51,8 @@ def registrar_reserva(request):
         hora = request.POST.get('hora')
         raza = request.POST.get('raza')
         
-        # Guardar los datos en tu modelo Reserva o realizar cualquier otra acción que desees
+        
+      
         reserva = Reserva.objects.create(
                                         nombre_cliente=nombre_cliente,
                                         nombre_mascota=nombre_mascota,
@@ -54,24 +61,12 @@ def registrar_reserva(request):
                                         fecha_reserva=fecha,
                                         hora_reserva=hora,
                                         raza=raza,)
+                                        
         reserva.save()
-        # Redirigir a una página de éxito o realizar cualquier otra acción que desees
-        return render(request,'mascotas/carrito.html', {'reserva': reserva})
-
-    # Si no es una solicitud POST, renderiza el formulario nuevamente o realiza cualquier otra acción que desees
+        
+        servicios = Servicio.objects.all()
+     
+        return render(request,'mascotas/carrito.html', {'reserva': reserva, 'servicios':servicios})
     return render(request, 'mascotas/reservas.html')
 
-def busqueda(request):
-    if request.method == 'GET':
-        cliente = request.GET.get('cliente')  # Obtener el nombre del cliente desde la solicitud GET
 
-        # Realizar la búsqueda en la base de datos
-        if cliente:
-            reservas = None
-            reservas = Reserva.objects.filter(nombre_cliente__icontains=cliente)
-        else:
-            reservas = None
-        # Renderizar el resultado de la búsqueda en un template
-        return render(request, 'mascotas/carrito.html', {'reservas': reservas})
-
-    return render(request, 'mascotas/carrito.html')

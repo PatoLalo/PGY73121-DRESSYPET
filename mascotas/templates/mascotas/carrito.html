@@ -31,51 +31,66 @@
         <a class="enlace" href="{% url 'contacto' %}">Contáctanos</a>
     </nav>
     <section class="cart">
-        {% if reserva  %}
-            <h1>Registro Exitoso</h1>
-            <h2>Datos de la reserva:</h2>
-            <ul>
-                <li>Nombre del cliente: {{ reserva.nombre_cliente }}</li>
-                <li>Nombre de la mascota: {{ reserva.nombre_mascota }}</li>
-                <li>Teléfono: {{ reserva.telefono }}</li>
-                <li>Email: {{ reserva.email }}</li>
-                <li>Hora de reserva: {{ reserva.hora_reserva }}</li>
-                <li>Fecha de reserva: {{ reserva.fecha_reserva }}</li>
-                <li>Raza: {{ reserva.raza }}</li>
-            </ul>
-        {% else %}
-            <h1> !Aun no reservas¡</h1>
-        {% endif %}
-        <br><br>
-
-        <section class="services">
-            <h1>Servicios</h1>
-            <div class="service">
-              <img src="ruta_imagen_servicio_1.jpg" alt="Servicio 1">
-              <h2>Servicio 1</h2>
-              <p>Descripción del servicio 1.</p>
-              <button class="add-to-cart" data-service="Servicio 1">Agregar al carrito</button>
-            </div>
-            <div class="service">
-                <img src="ruta_imagen_servicio_1.jpg" alt="Servicio 1">
-                <h2>Servicio 1</h2>
-                <p>Descripción del servicio 1.</p>
-                <button class="add-to-cart" data-service="Servicio 1">Agregar al carrito</button>
-            </div>
-            <div class="service">
-                <img src="ruta_imagen_servicio_1.jpg" alt="Servicio 1">
-                <h2>Servicio 1</h2>
-                <p>Descripción del servicio 1.</p>
-                <button class="add-to-cart" data-service="Servicio 1">Agregar al carrito</button>
-            </div>
-            <div class="service">
-                <img src="ruta_imagen_servicio_1.jpg" alt="Servicio 1">
-                <h2>Servicio 1</h2>
-                <p>Descripción del servicio 1.</p>
-                <button class="add-to-cart" data-service="Servicio 1">Agregar al carrito</button>
-            </div>
-          </section>
-        
+        <div class="contenedor">
+            <div class="contenedor1">
+                {% if reserva  %}
+                    <h1>Registro Exitoso</h1>
+                    <h2>Datos de la reserva:</h2>
+                    <ul>
+                        <li>Nombre del cliente: {{ reserva.nombre_cliente }}</li>
+                        <li>Nombre de la mascota: {{ reserva.nombre_mascota }}</li>
+                        <li>Teléfono: {{ reserva.telefono }}</li>
+                        <li>Email: {{ reserva.email }}</li>
+                        <li>Hora de reserva: {{ reserva.hora_reserva }}</li>
+                        <li>Fecha de reserva: {{ reserva.fecha_reserva }}</li>
+                        <li>Raza: {{ reserva.raza }}</li>
+                        
+                    </ul>
+                {% else %}
+                    <h1> !Aun no reservas¡</h1>
+                {% endif %}
+            </div> 
+        </div>    
+        <br>
     </section>
+    <section class="services">
+        <h1>Servicios</h1>
+        {% for servicio in servicios %}
+        <div class="service">
+            <img class="imgRedondeo" src='{% static "img/servicio_" %}{{ servicio.id_servicio }}.jpg'>
+            <h2>{{ servicio.servicio }}</h2>
+            <p class="precio">Precio: {{ servicio.precio }}</p>
+            <button class="add-to-cart" data-service="{{ servicio.servicio }}">Agregar/Quitar</button>
+        </div>
+        {% endfor %}
+    </section>
+    
+    <h2>Total a pagar:</h2>
+    <p id="total-pagar">0</p>
+    
+    <button id="pago-btn">Realizar pago</button>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            var total = 0;
+            $('.add-to-cart').on('click', function() {
+                var precio = parseFloat($(this).siblings('p.precio').text().replace('Precio: ', ''));
+    
+                if ($(this).hasClass('selected')) {
+                    total -= precio;
+                    $(this).removeClass('selected');
+                } else {
+                    total += precio;
+                    $(this).addClass('selected');
+                }
+    
+                $('#total-pagar').text(total.toLocaleString('es-CL', { minimumFractionDigits: 0, maximumFractionDigits: 2 }));
+                });
+
+            $('#pago-btn').on('click', function() {
+            });
+        });
+    </script>
 </body>
 </html>
