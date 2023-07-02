@@ -15,21 +15,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header class="titulo">
-        <a href="{% url 'index'%}">
-            <img src='{% static "img/logo.png" %}' alt="logo Dressypet">
-        </a>
-        <a href="{% url 'index'%}">
-            <h1>Dressy Pet</h1>
-        </a>
-    </header>  
-    <nav class="navegador">
-        <a class="enlace" href="{% url 'index'%}">Inicio</a>
-        <a class="enlace" href="{% url 'nosotros'%}">Nosotros</a>
-        <a class="enlace" href="{% url 'reservas'%}">Reserva tu hora</a>
-        <a class="enlace" href="{% url 'trabajo' %}">Nuestro trabajo</a>
-        <a class="enlace" href="{% url 'contacto' %}">Contáctanos</a>
-    </nav>
+
+    {% include 'base.html' %}
+    
     <h2>Quienes somos</h2>
     <div class="contenedor">
         <p>En nuestra peluquería, contamos con un equipo de empleados altamente capacitados para brindar los mejores servicios de belleza y cuidado de mascotas.</p>

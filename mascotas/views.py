@@ -1,12 +1,15 @@
 from django.shortcuts import redirect, render
 
 from mascotas.models import Reserva, Servicio
-
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
-
+@login_required
 def index(request):
-    context={}
+    
+    request.session["usuario"]="Phurtado"
+    usuario=request.session["usuario"]
+    context={"usuario":usuario}
     return render(request,'mascotas/index.html', context)
 
 def index(request):
