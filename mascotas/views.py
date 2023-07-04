@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 
 from mascotas.models import Reserva, Servicio
 from django.contrib.auth.decorators import login_required
@@ -78,3 +78,17 @@ def registrar_reserva(request):
     return render(request, 'mascotas/reservas.html')
 
 
+def eliminar_servicio(request, pk):
+    context={}
+    try:
+        servicio = Servicio.objects.get(id_servicio=pk)
+        servicio.delete()
+        
+        mensaje="Bien, datos eliminados..."
+        servicios = Servicio.objects.all()
+        context = {'servicios': servicios, 'mensaje': mensaje}
+        return render(request,'mascotas/carritoAdm.html', context)
+    except:
+        mensaje="Error, no existe..."
+        servicios = Servicio.objects.all()
+        context = {'servicios': servicios, 'mensaje': mensaje}

@@ -3,17 +3,16 @@
 
     {% block content %}
     <table>
-        {% if alumnos %}
-            <th>Producto:</th>
-            <th>Precio:</th>
+        {% if servicios %}
+            <th>Producto</th>
+            <th>Precio</th>
             {% for x in servicios %}
-                <tr>
-                    <td> {{ x.servicio }}
-                    <td> {{ x.precio }}
-                    <td> <a >Eliminar</a></td>
-                    <td> <a >Modificar</a></td>
-                
-                </tr>
+            <tr><td>{{ x.id_servicio }}</td>
+                <td>{{ x.servicio }}</td>
+                <td>{{ x.precio }}</td>
+                <td><a href="{% url 'eliminar_servicio' pk=x.id_servicio %}">Eliminar</a></td>
+                {% comment %} <td><a href="{% url 'modificar_servicio' pk=x.id_servicio %}">Modificar</a></td> {% endcomment %}
+            </tr>
             {% endfor %}
         {% endif %}    
     </table>
