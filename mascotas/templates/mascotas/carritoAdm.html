@@ -1,0 +1,21 @@
+{% extends 'mascotas\base.html' %}
+{% load static %}
+
+    {% block content %}
+    <table>
+        {% if alumnos %}
+            <th>Producto:</th>
+            <th>Precio:</th>
+            {% for x in servicios %}
+                <tr>
+                    <td> {{ x.servicio }}
+                    <td> {{ x.precio }}
+                    <td> <a >Eliminar</a></td>
+                    <td> <a >Modificar</a></td>
+                
+                </tr>
+            {% endfor %}
+        {% endif %}    
+    </table>
+        
+    {% endblock %} 

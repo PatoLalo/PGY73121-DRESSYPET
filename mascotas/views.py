@@ -1,4 +1,4 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import render
 
 from mascotas.models import Reserva, Servicio
 from django.contrib.auth.decorators import login_required
@@ -15,6 +15,11 @@ def index(request):
 def index(request):
     context={}
     return render(request, 'mascotas/index.html', context)
+
+def carritoAdm(request):
+    servicios= Servicio.objects.all()
+    context={'servicios': servicios}
+    return render(request, 'mascotas/carritoAdm.html', context)
 
 def nosotros(request):
     context={}
