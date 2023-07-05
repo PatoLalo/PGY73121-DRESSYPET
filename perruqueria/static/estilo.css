@@ -380,28 +380,41 @@ footer{
 }
 
 /* Estilos para los servicios */
-.services {
-    text-align: center;
-    padding: 20px;
-  }
-  
-  .service {
+.servicio {
     display: inline-block;
-    margin: 20px;
-  }
-  
-  .service img {
-    width: 200px;
-    height: 200px;
-  }
-  
-  .service h2 {
-    margin-top: 10px;
-  }
-  
-  .add-to-cart {
-    margin-top: 10px;
-  }
+    width: 100%;
+    max-width: 300px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.servicio img {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.servicio h2 {
+    margin-bottom: 5px;
+}
+
+.servicio p {
+    margin: 0;
+}
+
+@media (min-width: 768px) {
+    .servicio {
+        width: 50%;
+    }
+}
+
+@media (min-width: 992px) {
+    .servicio {
+        width: 25%;
+    }
+}
   
   /* Estilos para el carrito de compras */
   .cart-icon {

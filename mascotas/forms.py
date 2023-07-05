@@ -9,4 +9,4 @@ class ServicioForm(forms.ModelForm):
 class AgregarServicioForm(forms.ModelForm):
     class Meta:
         model = Servicio
-        fields = ['servicio', 'precio']
+        fields = ['servicio', 'precio', 'imagen']

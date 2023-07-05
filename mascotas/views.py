@@ -107,7 +107,7 @@ def modificar_servicio(request, pk):
 
 def agregar_servicio(request):
     if request.method == 'POST':
-        form = AgregarServicioForm(request.POST)
+        form = AgregarServicioForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('carritoAdm')  # Redirige a la vista carritoAdm.html

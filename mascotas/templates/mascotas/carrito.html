@@ -29,12 +29,13 @@
         <section class="services">
             <h1>Servicios</h1>
             {% for servicio in servicios %}
-            <div class="service">
-                <img class="imgRedondeo" src='{% static "img/servicio_" %}{{ servicio.id_servicio }}.jpg'>
-                <h2>{{ servicio.servicio }}</h2>
-                <p class="precio">Precio: {{ servicio.precio }}</p>
-                <button class="add-to-cart" data-service="{{ servicio.servicio }}">Agregar/Quitar</button>
-            </div>
+            <div class="servicio">
+                    <img src="{{ servicio.imagen.url }}" alt="{{ servicio.servicio }}">
+                    <h2>{{ servicio.servicio }}</h2>
+                    <p>Precio: {{ servicio.precio }}</p>
+                </div>
+            {% empty %}
+                <p>No hay servicios en el carrito.</p>
             {% endfor %}
         </section>
         
