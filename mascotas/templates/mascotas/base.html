@@ -41,7 +41,9 @@
     <nav class="navegador">
         {% if user.is_authenticated %}
             <a class="enlace" href="{% url 'reservas'%}">Reserva tu hora</a>
-            <a class="enlace" href="{% url 'carrito'%}">Contrata servicios</a>
+            {% if user.username == 'admin' %}
+                <a class="enlace" href="{% url 'carritoAdm'%}">Cambios servicios</a>
+            {% endif %}
             <a class="enlace" href="{% url 'logout' %}">Cerrar sesión</a>
         {% else %}
             <a class="enlace" href="{% url 'index'%}">Inicio</a>
@@ -50,6 +52,7 @@
             <a class="enlace" href="{% url 'contacto' %}">Contáctanos</a>
         {% endif %}
     </nav>
+    
     {% block content %}
     {% endblock %}
     <footer>Todos los derechos reservados. Dressypet.</footer>
