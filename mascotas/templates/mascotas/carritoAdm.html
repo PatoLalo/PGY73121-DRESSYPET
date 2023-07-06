@@ -2,18 +2,21 @@
 {% load static %}
 
     {% block content %}
+
+    <button type="button">
+        <a href="{% url 'agregar_servicio' %}" >Agregar </a>
+    </button>
     <table>
-        {% if alumnos %}
-            <th>Producto:</th>
-            <th>Precio:</th>
+        {% if servicios %}
+            <th>Producto</th>
+            <th>Precio</th>
             {% for x in servicios %}
-                <tr>
-                    <td> {{ x.servicio }}
-                    <td> {{ x.precio }}
-                    <td> <a >Eliminar</a></td>
-                    <td> <a >Modificar</a></td>
-                
-                </tr>
+            <tr>
+                <td>{{ x.servicio }}</td>
+                <td>{{ x.precio }}</td>
+                <td><a href="{% url 'eliminar_servicio' pk=x.id_servicio %}">Eliminar</a></td>
+                <td><a href="{% url 'modificar_servicio' pk=x.id_servicio %}">Modificar</a></td> 
+            </tr>
             {% endfor %}
         {% endif %}    
     </table>

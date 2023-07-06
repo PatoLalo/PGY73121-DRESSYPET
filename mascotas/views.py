@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
+from mascotas.forms import AgregarServicioForm, ServicioForm
 
 from mascotas.models import Reserva, Servicio
 from django.contrib.auth.decorators import login_required
@@ -78,3 +79,39 @@ def registrar_reserva(request):
     return render(request, 'mascotas/reservas.html')
 
 
+def eliminar_servicio(request, pk):
+    context={}
+    try:
+        servicio = Servicio.objects.get(id_servicio=pk)
+        servicio.delete()
+        
+        mensaje="Bien, datos eliminados..."
+        servicios = Servicio.objects.all()
+        context = {'servicios': servicios, 'mensaje': mensaje}
+        return render(request,'mascotas/carritoAdm.html', context)
+    except:
+        mensaje="Error, no existe..."
+        servicios = Servicio.objects.all()
+        context = {'servicios': servicios, 'mensaje': mensaje}
+        
+def modificar_servicio(request, pk):
+    servicio = Servicio.objects.get(id_servicio=pk)
+    if request.method == 'POST':
+        form = ServicioForm(request.POST, instance=servicio)
+        if form.is_valid():
+            form.save()
+            return redirect('carritoAdm')
+    else:
+        form = ServicioForm(instance=servicio)
+    return render(request, 'mascotas/modificar_servicio.html', {'form': form, 'servicio': servicio})
+
+def agregar_servicio(request):
+    if request.method == 'POST':
+        form = AgregarServicioForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('carritoAdm')  # Redirige a la vista carritoAdm.html
+    else:
+        form = AgregarServicioForm()
+
+    return render(request, 'mascotas/agregar_servicio.html', {'form': form})

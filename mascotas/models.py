@@ -8,6 +8,7 @@ class Servicio(models.Model):
     id_servicio  = models.AutoField(db_column='idServicio', primary_key=True) 
     servicio     = models.CharField(max_length=50, blank=False, null=False)
     precio       = models.IntegerField( null=True)
+    imagen       = models.ImageField(upload_to='servicios/', default='default.jpg')
 
     def formato_precio(self):
         return "{:,}".format(self.precio).replace(",", ".")
