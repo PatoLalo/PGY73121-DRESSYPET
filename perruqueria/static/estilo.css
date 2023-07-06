@@ -321,6 +321,58 @@ header {
     padding: 8px;
   }
   
+  /* Agregar servicio */
+
+  #ag-serv form {
+    display: flex;
+    flex-direction: column;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  #ag-serv button{
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+  }
+
+  #ag-serv button:hover{
+    background-color: var(--secundario);
+  }
+
+  #ag-serv h1{
+    text-align: center;
+  }
+
+  /* Login */
+
+  #login form {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  #login button {
+    width: 150px;
+    margin: auto;
+    cursor: url(../static/img/shake.png), auto;
+    font-size: 24px;
+  }
+
+  #login button a {
+    text-transform: none;
+    color: var(--negro);
+  }
+
+  #login button:hover{
+    background-color: var(--secundario);
+    color: var(--negro);
+  }
+
+
   /* Reservas */
   #reserva form {
     display: flex;
@@ -330,7 +382,7 @@ header {
     margin: 0 auto;
     padding: 20px;
   }
-  
+
   #reserva form .form-group {
     margin-bottom: 20px;
   }
@@ -344,7 +396,7 @@ header {
   #reserva form input,
   #reserva form select {
     padding: 5px;
-    width: 100%;
+    width: 350px;
     height: 25px;
     border: none;
     border-radius: 4px;
@@ -360,9 +412,15 @@ header {
   }
   
   #reserva form button {
-    width: 100%;
+    display: flex;
+    width: 120px;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    margin: 0 auto;
+    border-radius: 20%;
   }
-  
+
   .modal-content {
     text-align: center;
   }
@@ -395,6 +453,23 @@ header {
     box-sizing: border-box;
   }
   
+  .card-carrito {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: var(--primarioOscuro);
+    padding: 10px;
+    margin: 10px;
+    flex: 1 0 calc(33.33% - 20px);
+    width: 300px;
+    height: 522px;
+    box-sizing: border-box;
+  }
+
+  .card-img-top {
+    border: 1px solid var(--blanco);
+    height: 270px;
+  }
+
   .card img {
     width: 100%;
     height: auto;
@@ -436,6 +511,7 @@ header {
   
   /* Estilos para los servicios */
   .services {
+    display: grid;
     text-align: center;
     padding: 20px;
   }
@@ -468,6 +544,7 @@ header {
   .cart-icon img {
     width: 40px;
     height: 40px;
+    background-color: var(--primarioOscuro);
   }
   
   /* redondeo imagen servicios */
@@ -475,3 +552,93 @@ header {
     border-radius: 50%;
   }
   
+  /* Tabla crud servicios admin */
+
+  .table-container {
+    margin-left: 20px;
+  }
+  
+  .servicios-table {
+    width: 97%;
+    max-width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+  .servicios-table th,
+  .servicios-table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .servicios-table th {
+    background-color: var(--primarioOscuro);
+  }
+
+  .servicios-table a {
+    color: var(--blanco);
+  }
+
+  .servicios-table a:hover{
+    color: var(--secundario);
+  }
+  
+  .servicios-table td:last-child {
+    text-align: center;
+  }
+  
+  button#agregar-btn {
+    display: flex;
+    margin-top: 10px;
+    padding: 10px 20px;
+    text-align: center;
+    align-items: center;
+    margin: 0 auto;
+    background-color: var(--blanco);
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  button#agregar-btn a {
+    text-decoration: none;
+    color: var(--negro);
+  }
+  
+  button#agregar-btn:hover {
+    background-color: var(--secundario);
+  }
+  
+  @media only screen and (max-width: 768px) {
+    .servicios-table {
+      width: 100%;
+    }
+  
+    .servicios-table th,
+    .servicios-table td {
+      padding: 8px;
+    }
+  }
+
+  /* Carrito */
+
+  .agregar-servicio{
+    border: var(--negro);
+  }
+
+  .agregar-servicio:hover{
+    background-color: var(--secundario);
+    color: var(--negro);
+  }
+
+  .carrito tr{
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--primarioOscuro);
+    border-bottom: 2px solid var(--blanco);
+  }
+
+  .carrito {
+    margin-left: 20px;
+  }

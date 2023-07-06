@@ -40,7 +40,7 @@
     </header>    
     <nav class="navegador">
         {% if user.is_authenticated %}
-            <a class="enlace" href="{% url 'reservas'%}">Reserva tu hora</a>
+            <a class="enlace" href="{% url 'carrito'%}">Reserva tu hora</a>
             {% if user.username == 'admin' %}
                 <a class="enlace" href="{% url 'carritoAdm'%}">Cambios servicios</a>
             {% endif %}

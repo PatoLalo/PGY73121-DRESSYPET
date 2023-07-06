@@ -1,24 +1,35 @@
 {% extends 'mascotas\base.html' %}
 {% load static %}
 
-    {% block content %}
+{% block content %}
 
-    <button type="button">
-        <a href="{% url 'agregar_servicio' %}" >Agregar </a>
-    </button>
-    <table>
-        {% if servicios %}
-            <th>Producto</th>
-            <th>Precio</th>
-            {% for x in servicios %}
-            <tr>
-                <td>{{ x.servicio }}</td>
-                <td>{{ x.precio }}</td>
-                <td><a href="{% url 'eliminar_servicio' pk=x.id_servicio %}">Eliminar</a></td>
-                <td><a href="{% url 'modificar_servicio' pk=x.id_servicio %}">Modificar</a></td> 
-            </tr>
-            {% endfor %}
-        {% endif %}    
-    </table>
-        
-    {% endblock %} 
+<div class="table-container">
+  <table class="servicios-table">
+    {% if servicios %}
+      <thead>
+        <tr>
+          <th>Producto</th>
+          <th>Precio</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for x in servicios %}
+        <tr>
+          <td>{{ x.servicio }}</td>
+          <td>{{ x.precio }}</td>
+          <td><a href="{% url 'eliminar_servicio' pk=x.id_servicio %}">Eliminar</a></td>
+          <td><a href="{% url 'modificar_servicio' pk=x.id_servicio %}">Modificar</a></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    {% endif %}
+  </table>
+</div>
+
+<button id="agregar-btn" type="button">
+  <a href="{% url 'agregar_servicio' %}">Agregar servicio</a>
+</button>
+
+{% endblock %}

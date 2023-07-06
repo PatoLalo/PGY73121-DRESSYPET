@@ -3,12 +3,14 @@
 
 
 {% block content %}
-  <h2>Agregar Servicio</h2>
-  <form class="contenedor" method="post" enctype="multipart/form-data">
-    <div class="form-group">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Guardar</button>
-    </div>
-  </form>
+  <section id="ag-serv">
+    <h2>Agregar Servicio</h2>
+    <form id="formulario" class="contenedor" method="post" enctype="multipart/form-data">
+      <div class="form-group">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <button type="submit">Guardar</button>
+      </div>
+    </form>
+  </section>
 {% endblock %}

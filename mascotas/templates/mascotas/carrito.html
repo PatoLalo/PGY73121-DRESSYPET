@@ -1,69 +1,132 @@
 {% extends 'mascotas\base.html' %}
 {% load static %}
 
-    {% block content %}
+{% block content %}
         
-        <section class="cart">
-            <div class="contenedor">
-                <div class="contenedor1">
-                    {% if reserva  %}
-                        <h1>Registro Exitoso</h1>
-                        <h2>Datos de la reserva:</h2>
-                        <ul>
-                            <li>Nombre del cliente: {{ reserva.nombre_cliente }}</li>
-                            <li>Nombre de la mascota: {{ reserva.nombre_mascota }}</li>
-                            <li>Teléfono: {{ reserva.telefono }}</li>
-                            <li>Email: {{ reserva.email }}</li>
-                            <li>Hora de reserva: {{ reserva.hora_reserva }}</li>
-                            <li>Fecha de reserva: {{ reserva.fecha_reserva }}</li>
-                            <li>Raza: {{ reserva.raza }}</li>
-                            
-                        </ul>
-                    {% else %}
-                        <h1> !Aun no reservas¡</h1>
-                    {% endif %}
-                </div> 
-            </div>    
-            <br>
-        </section>
-        <section class="services">
-            <h1>Servicios</h1>
-            {% for servicio in servicios %}
-            <div class="servicio">
-                    <img src="{{ servicio.imagen.url }}" alt="{{ servicio.servicio }}">
-                    <h2>{{ servicio.servicio }}</h2>
-                    <p>Precio: {{ servicio.precio }}</p>
-                </div>
-            {% empty %}
-                <p>No hay servicios en el carrito.</p>
-            {% endfor %}
-        </section>
-        
-        <h2>Total a pagar:</h2>
-        <p id="total-pagar">0</p>
-        
-        <button id="pago-btn">Realizar pago</button>
-        
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script>
-            $(document).ready(function() {
-                var total = 0;
-                $('.add-to-cart').on('click', function() {
-                    var precio = parseFloat($(this).siblings('p.precio').text().replace('Precio: ', ''));
-        
-                    if ($(this).hasClass('selected')) {
-                        total -= precio;
-                        $(this).removeClass('selected');
-                    } else {
-                        total += precio;
-                        $(this).addClass('selected');
-                    }
-        
-                    $('#total-pagar').text(total.toLocaleString('es-CL', { minimumFractionDigits: 0, maximumFractionDigits: 2 }));
-                    });
+<section class="services">
+  <div class="row row-cols-1 row-cols-md-4">
+    {% for servicio in servicios %}
+    <div class="col mb-4">
+      <div class="card-carrito">
+        <img src="{{ servicio.imagen.url }}" class="card-img-top rounded-circle" alt="{{ servicio.servicio }}">
+        <div class="card-body">
+          <h3 class="card-title">{{ servicio.servicio }}</h3>
+          <p class="card-text">Precio: ${{ servicio.precio }}</p>
+          <button class="agregar-servicio btn btn-primary" data-servicio="{{ servicio.servicio }}" data-precio="{{ servicio.precio }}">Agregar</button>
+        </div>
+      </div>
+    </div>
+    {% empty %}
+    <p>No hay servicios disponibles.</p>
+    {% endfor %}
+  </div>
+</section>
 
-                $('#pago-btn').on('click', function() {
-                });
-            });
-        </script>
-    {% endblock %} 
+<div class="carrito">
+  <h2>Lista de servicios seleccionados</h2>
+  <table id="lista-servicios" class="servicios-table">
+    <thead>
+      <tr>
+        <th>Servicio</th>
+        <th>Precio</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+  <div class="contenedor">
+    <p>Total a pagar: $<span id="total-pagar">0</span></p>
+  </div>
+  <div class="text-center">
+    <button class="pagar btn btn-primary">Pagar</button>
+  </div>
+</div>
+
+<div class="modal fade" id="modalAgregarServicio" tabindex="-1" role="dialog" aria-labelledby="modalAgregarServicioLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalAgregarServicioLabel">Seleccione la fecha y hora</h5>
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>          
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="fecha">Fecha:</label>
+          <input type="date" id="fecha" name="fecha" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="hora">Hora:</label>
+          <input type="time" id="hora" name="hora" class="form-control">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="agregarServicioModal">Agregar servicio</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+  $(document).ready(function() {
+    const agregarServicioButtons = document.querySelectorAll('.agregar-servicio');
+    const listaServicios = document.getElementById('lista-servicios');
+    const totalPagar = document.getElementById('total-pagar');
+
+    let serviciosSeleccionados = [];
+    let total = 0;
+
+    agregarServicioButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const servicio = button.dataset.servicio;
+        const precio = parseFloat(button.dataset.precio);
+        $('#modalAgregarServicio').modal('show');
+
+        $('#agregarServicioModal').off('click').on('click', () => {
+          const fecha = $('#fecha').val();
+          const hora = $('#hora').val();
+          serviciosSeleccionados.push({ servicio, precio, fecha, hora });
+          total += precio;
+
+          const tr = document.createElement('tr');
+          tr.innerHTML = `
+            <td>${servicio}</td>
+            <td>${precio}</td>
+            <td>
+              <button class="quitar-servicio btn btn-danger" data-precio="${precio}">Quitar servicio</button>
+            </td>`;
+          listaServicios.querySelector('tbody').appendChild(tr);
+
+          totalPagar.textContent = total.toFixed(0);
+
+          $('#modalAgregarServicio').modal('hide');
+        });
+      });
+    });
+
+    listaServicios.addEventListener('click', (event) => {
+      if (event.target.classList.contains('quitar-servicio')) {
+        const precio = parseFloat(event.target.dataset.precio);
+        const index = Array.from(listaServicios.querySelectorAll('tbody tr')).indexOf(event.target.closest('tr'));
+        serviciosSeleccionados.splice(index, 1);
+        total -= precio;
+
+        event.target.closest('tr').remove();
+        totalPagar.textContent = total.toFixed(2);
+      }
+    });
+
+    $('.pagar').on('click', () => {
+      // Aquí puedes agregar la lógica para realizar el pago
+      // Puedes redirigir al usuario a una página de pago o mostrar un formulario de pago
+    });
+  });
+</script>
+
+{% endblock %}

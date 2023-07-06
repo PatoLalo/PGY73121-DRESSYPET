@@ -2,14 +2,15 @@
 {% load static %}
 
    {% block content %}
-        <h2>Inicio Sesión</h2>
-        <form method="POST">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <div style="display: flex; justify-content: center;">
-                <button type="submit">Iniciar sesión</button>
-                <button><a class="enlace" href="{% url 'register'%}">Registrate</a></button>
-            </div>
-        </form>
-    
+        <section id="login">
+            <h2>Inicio Sesión</h2>
+            <form id="formulario" class="contenedor" method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <div style="display: flex; justify-content: center;">
+                    <button type="submit">Iniciar sesión</button>
+                    <button><a class="enlace" href="{% url 'register'%}">Registrate</a></button>
+                </div>
+            </form>
+        </section>
     {% endblock %}      

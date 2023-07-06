@@ -7,17 +7,17 @@
         <form id="formulario" class="contenedor" action="register" method="POST" onsubmit="return enviarFormulario()">
             {% csrf_token %}
             <div class="form-group">
-                <label for="id_username">Username:</label>
+                <label for="id_username">Nombre de usuario:</label>
                 <input type="text" name="username" id="id_username" class="form-control transparent-input">
                 <div id="errorUsername" class="error"></div>
             </div>
             <div class="form-group">
-                <label for="id_password">Password:</label>
+                <label for="id_password">Contraseña:</label>
                 <input type="password" name="password" id="id_password" class="form-control transparent-input">
                 <div id="errorPassword" class="error"></div>
             </div>
             <div class="form-group">
-                <label for="id_password_confirmation">Password confirmation:</label>
+                <label for="id_password_confirmation">Confirme contraseña:</label>
                 <input type="password" name="password_confirmation" id="id_password_confirmation" class="form-control transparent-input">
                 <div id="errorPasswordConfirmation" class="error"></div>
             </div>
@@ -41,7 +41,7 @@
                 <input type="email" id="email" class="form-control transparent-input" name="email">
                 <div id="errorEmail" class="error"></div>
             </div>
-            <button type="submit">Registrar</button>
+            <button type="submit">Registrarse</button>
         </form>
     </section>
     <script src="{% static 'funciones.js' %}"></script>

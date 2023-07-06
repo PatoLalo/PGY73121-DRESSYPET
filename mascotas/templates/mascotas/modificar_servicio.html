@@ -2,10 +2,12 @@
 {% load static %}
 
 {% block content %}
-  <h1>Modificar Servicio</h1>
-  <form method="POST" action="{% url 'modificar_servicio' pk=servicio.id_servicio %}">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Guardar cambios</button>
-  </form>
+  <section id="ag-serv">
+    <h1>Modificar Servicio</h1>
+    <form id="formulario" class="contenedor" method="POST" action="{% url 'modificar_servicio' pk=servicio.id_servicio %}">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Guardar cambios</button>
+    </form>
+  </section>
 {% endblock %}
