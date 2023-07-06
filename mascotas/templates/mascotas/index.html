@@ -3,16 +3,16 @@
 
    {% block content %}
 
-        <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+        <div id="carouselExampleAutoplaying" class="carousel slide custom-carousel" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src='{% static "img/imagen_5.jpeg" %}' class="d-block w-100" alt="atencion con amor">
+                    <img src='{% static "img/imagen_5.png" %}' class="d-block w-100 custom-carousel-image" alt="atencion con amor">
                 </div>
                 <div class="carousel-item">
-                    <img src='{% static "img/bano.jpeg" %}' class="d-block w-100" alt="bano cuidadoso">
+                    <img src='{% static "img/bano.jpeg" %}' class="d-block w-100 custom-carousel-image" alt="bano cuidadoso">
                 </div>
                 <div class="carousel-item">
-                    <img src='{% static "img/corte.jpeg" %}' class="d-block w-100" alt="corte preciso">
+                    <img src='{% static "img/corte.jpeg" %}' class="d-block w-100 custom-carousel-image" alt="corte preciso">
                 </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
@@ -72,9 +72,6 @@
                     <p>Corte a las uñas de las mascotas con articulos profesionales para mantener tanto la estetica como la comodidad de las mascotas al caminar.</p>
                 </section>
             </div>
-        </div>
-        <div class="cart-icon">
-            <a href= "{% url 'carrito'%}" ><img src='{% static "img/1058965.png" %}' alt="Carrito de compras"></a>
         </div>
     
     {% endblock %}

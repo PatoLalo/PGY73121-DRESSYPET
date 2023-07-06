@@ -9,36 +9,46 @@
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href='{% static "estilo.css" %}'>
+    <link rel="stylesheet" href="{% static 'estilo.css' %}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300&display=swap" rel="stylesheet">
 </head>
 <body>
     <header class="titulo">
-        <a href="index.html">
-            <img src='{% static "img/logo.png" %}' alt="logo Dressypet">
-        </a>
-        <a href="index.html">
+        <div class="logo">
+            <a href="{% url 'index'%}">
+                <img src='{% static "img/logo.png" %}' alt="logo Dressypet">
+            </a>
             <h1>Dressy Pet</h1>
-        </a>
-    </header>  
-    <nav class="navegador">
-        <a class="enlace" href="{% url 'index'%}">Inicio</a>
-        <a class="enlace" href="{% url 'nosotros'%}">Nosotros</a>
-        <a class="enlace" href="{% url 'reservas'%}">Reserva tu hora</a>
-        <a class="enlace" href="{% url 'trabajo' %}">Nuestro trabajo</a>
-        <a class="enlace" href="{% url 'contacto' %}">Contáctanos</a>
-        <a class="enlace dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        </div>
+        <div class="espacio"></div>
+        <div class="sesion">
             {% if user.is_authenticated %}
-                {{ user.username }}
+                <div class="usuario">
+                    <p>¡Hola {{ user.username }}!</p>
+                </div>
+                <div class="carro">
+                    <a href="{% url 'carrito' %}">
+                        <img src='{% static "img/1058965.png" %}' alt="Carrito de compras">
+                    </a>
+                </div>
             {% else %}
                 <a class="enlace" href="{% url 'login' %}">Iniciar sesión</a>
             {% endif %}
-        </a>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">  
-            <a class="dropdown-item" href="{% url 'logout' %}">Cerrar sesión</a>
         </div>
+    </header>    
+    <nav class="navegador">
+        {% if user.is_authenticated %}
+            <a class="enlace" href="{% url 'reservas'%}">Reserva tu hora</a>
+            <a class="enlace" href="{% url 'carrito'%}">Contrata servicios</a>
+            <a class="enlace" href="{% url 'logout' %}">Cerrar sesión</a>
+        {% else %}
+            <a class="enlace" href="{% url 'index'%}">Inicio</a>
+            <a class="enlace" href="{% url 'nosotros'%}">Nosotros</a> 
+            <a class="enlace" href="{% url 'trabajo' %}">Nuestro trabajo</a>
+            <a class="enlace" href="{% url 'contacto' %}">Contáctanos</a>
+        {% endif %}
     </nav>
     {% block content %}
     {% endblock %}
