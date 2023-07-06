@@ -16,8 +16,7 @@ class Servicio(models.Model):
 
     def __str__(self):
         return str(self.servicio)
-    
-    
+
 class Reserva(models.Model):
     nombre_cliente   = models.CharField(primary_key=True, max_length=10)
     # nombre_mascota   = models.CharField(max_length=20)
