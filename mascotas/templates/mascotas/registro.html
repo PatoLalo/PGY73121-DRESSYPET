@@ -1,0 +1,48 @@
+{% extends 'mascotas/base.html' %}
+{% load static %}
+
+{% block content %}
+    <h2>Registro</h2>
+    <section id="reserva">
+        <form id="formulario" class="contenedor" action="register" method="POST" onsubmit="return enviarFormulario()">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="id_username">Username:</label>
+                <input type="text" name="username" id="id_username" class="form-control transparent-input">
+                <div id="errorUsername" class="error"></div>
+            </div>
+            <div class="form-group">
+                <label for="id_password">Password:</label>
+                <input type="password" name="password" id="id_password" class="form-control transparent-input">
+                <div id="errorPassword" class="error"></div>
+            </div>
+            <div class="form-group">
+                <label for="id_password_confirmation">Password confirmation:</label>
+                <input type="password" name="password_confirmation" id="id_password_confirmation" class="form-control transparent-input">
+                <div id="errorPasswordConfirmation" class="error"></div>
+            </div>
+            <div class="form-group">
+                <label for="nombre_cliente">Nombre:</label>
+                <input type="text" name="nombre_cliente" id="nombre_cliente" class="form-control transparent-input">
+                <div id="errorNombre" class="error"></div>
+            </div>
+            <div class="form-group">
+                <label for="id_apellido">Apellido:</label>
+                <input type="text" name="apellido" id="id_apellido" class="form-control transparent-input">
+                <div id="errorApellido" class="error"></div>
+            </div>
+            <div class="form-group">
+                <label for="telefono">Número de teléfono:</label>
+                <input type="text" id="telefono" class="form-control transparent-input" name="telefono">
+                <div id="errorTelefono" class="error"></div>
+            </div>
+            <div class="form-group">
+                <label for="email">Correo electrónico:</label>
+                <input type="email" id="email" class="form-control transparent-input" name="email">
+                <div id="errorEmail" class="error"></div>
+            </div>
+            <button type="submit">Registrar</button>
+        </form>
+    </section>
+    <script src="{% static 'funciones.js' %}"></script>
+{% endblock %}

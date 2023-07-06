@@ -7,7 +7,8 @@
             {% csrf_token %}
             {{ form.as_p }}
             <div style="display: flex; justify-content: center;">
-                <button  type="submit">Log In</button>
+                <button type="submit">Iniciar sesión</button>
+                <button><a class="enlace" href="{% url 'register'%}">Registrate</a></button>
             </div>
         </form>
     
